@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="de">
+<head>
+
+
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Offline Player">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101010">
+  <title>Offline Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">♫</span><span>offline<span class="brand-muted">.</span></span></div>
+
+      <div class="side-section">
+        <div class="section-label">BIBLIOTHEK</div>
+        <button class="nav-button active" id="libraryButton"><span>▤</span> Alle Songs <span class="nav-count" id="songCount">0</span></button>
+      </div>
+
+      <div class="side-section playlist-section">
+        <div class="section-heading">
+          <div class="section-label">PLAYLISTS</div>
+          <button class="icon-button small" id="newPlaylistButton" title="Neue Playlist" aria-label="Neue Playlist">＋</button>
+        </div>
+        <div id="playlistList" class="playlist-list"></div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="offline-indicator"><span class="status-dot"></span> Deine Musik bleibt auf diesem Gerät</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">DEINE MUSIK. DEIN PLAYER.</div>
+          <h1 id="viewTitle">Alle Songs</h1>
+          <p class="subheading" id="viewSubtitle">Deine lokale Musikbibliothek</p>
+        </div>
+        <label class="import-button" for="fileInput"><span class="plus">＋</span> Musik hinzufügen</label>
+        <input id="fileInput" type="file" accept="audio/*,.mp3,.m4a,.aac,.wav,.ogg,.flac" multiple hidden>
+      </header>
+
+      <section class="library-panel">
+        <div class="panel-toolbar">
+          <div class="track-total" id="trackTotal">0 TITEL</div>
+          <div class="toolbar-actions">
+            <input id="searchInput" class="search-input" type="search" placeholder="Songs suchen …" aria-label="Songs suchen">
+            <button class="text-button" id="sortButton">Zuletzt hinzugefügt ↓</button>
+          </div>
+        </div>
+
+        <div class="track-header">
+          <span>#</span><span>TITEL</span><span>DATEI</span><span>DAUER</span><span></span>
+        </div>
+        <div id="trackList" class="track-list">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon">♫</div>
+            <h2>Hier ist noch Platz für Musik.</h2>
+            <p>Tippe auf „Musik hinzufügen“ und importiere deine Audiodateien.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="player">
+    <div class="now-playing">
+      <div class="cover-placeholder" id="currentCover">♫</div>
+      <div class="now-text">
+        <div class="now-title" id="currentTitle">Noch kein Song ausgewählt</div>
+        <div class="now-artist" id="currentArtist">Füge deine Musik hinzu</div>
+      </div>
+    </div>
+
+    <div class="player-center">
+      <div class="player-controls">
+        <button class="player-icon" id="shuffleButton" title="Zufallswiedergabe" aria-label="Zufallswiedergabe">⤨</button>
+        <button class="player-icon" id="previousButton" title="Vorheriger Song" aria-label="Vorheriger Song">|◀</button>
+        <button class="play-button" id="playButton" title="Abspielen" aria-label="Abspielen">▶</button>
+        <button class="player-icon" id="nextButton" title="Nächster Song" aria-label="Nächster Song">▶|</button>
+        <button class="player-icon" id="repeatButton" title="Wiederholen" aria-label="Wiederholen">↻</button>
+      </div>
+      <div class="progress-row">
+        <span id="currentTime">0:00</span>
+        <input id="progress" type="range" min="0" max="1000" value="0" aria-label="Wiedergabeposition">
+        <span id="duration">0:00</span>
+      </div>
+    </div>
+
+    <div class="player-right">
+      <span class="volume-symbol">♪</span>
+      <input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Lautstärke">
+    </div>
+  </footer>
+
+  <audio id="audio" preload="metadata"></audio>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

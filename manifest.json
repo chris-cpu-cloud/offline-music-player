@@ -1,0 +1,20 @@
+
+{
+  "name": "Offline Music Player",
+  "short_name": "Offline Player",
+  "description": "Dein persönlicher Offline-Musikplayer",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101010",
+  "theme_color": "#101010",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
